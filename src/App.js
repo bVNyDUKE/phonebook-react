@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import ContactList from './components/ContactList'
 
 function App() {
+  const contacts = [
+    { //default data kad nemamo nista u storage
+      first_name: 'Herp',
+      last_name: 'Derp',
+      number: '065-65505544',
+      category: 'Work',
+    },
+    {
+      first_name: 'Smor',
+      last_name: 'Duur',
+      number: '065-65505544',
+      category: 'Home',
+    },
+    {
+      first_name: 'Todo',
+      last_name: 'Todoovic',
+      number: '065-65505544',
+      category: 'Work',
+    },
+    {
+      first_name: 'Kek',
+      last_name: 'Bur',
+      number: '065-65505544',
+      category: 'Home',
+    },
+  ]
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={{marginTop: "50px"}}>
+      <ContactList data={contacts}></ContactList>
     </div>
   );
 }
