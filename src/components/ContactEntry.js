@@ -13,14 +13,22 @@ function useFormInput(initialValue){
     }
 }
 
-const ContactEntry = ({entry, index}) =>{
+const ContactEntry = ({entry, update}) =>{
     const [isEditing, setIsEditing] = useState(false)
-    const name = useFormInput(entry.first_name)
-    const surname = useFormInput(entry.last_name)
+    const name = useFormInput(entry.name)
+    const surname = useFormInput(entry.surname)
     const phone = useFormInput(entry.number)
 
+    function deleteEntry(entry, update){
+        update( oldList => {
+            const newList = oldList.filter( x => x.id !== entry.id)
+            localStorage.setItem('contacts', JSON.stringify(newList))
+            return newList
+        })
+    }
+
     return(
-        <div className={"ui centered card " + index}>
+        <div className={"ui centered card "}>
             <div className="content">
                 <div className="header">
                     {name.value} {surname.value}
@@ -36,7 +44,7 @@ const ContactEntry = ({entry, index}) =>{
                     <button className="ui basic button" onClick={() => setIsEditing(!isEditing)}>
                         <i className="edit icon"></i>
                     </button>
-                    <button className="ui basic button">
+                    <button className="ui basic button" onClick={() => deleteEntry(entry, update)}>
                         <i className="trash icon"></i>
                     </button>
                 </div>
@@ -47,6 +55,8 @@ const ContactEntry = ({entry, index}) =>{
             name={name}
             surname={surname}
             phone={phone}
+            update={update}
+            id={entry.id}
             editing={{
                 isEditing,
                 onChange: setIsEditing

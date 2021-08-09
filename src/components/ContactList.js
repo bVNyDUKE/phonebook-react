@@ -1,10 +1,10 @@
 import ContactEntry from './ContactEntry'
 
-const ContactList = ({data}) => {
+const ContactList = ({data, update}) => {
 
     return(
     <div className="ui container">
-    {data.map( (contact, index) => <ContactEntry entry={contact} index={index}></ContactEntry>)}
+    {data.map( contact => <ContactEntry entry={contact} key={contact.id} update={update}></ContactEntry>)}
     </div>)
 
 }

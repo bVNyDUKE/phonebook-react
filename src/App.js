@@ -1,37 +1,23 @@
+import { useEffect, useState } from 'react';
 import ContactList from './components/ContactList'
 
 function App() {
-  const contacts = [
-    { //default data kad nemamo nista u storage
-      first_name: 'Herp',
-      last_name: 'Derp',
-      number: '065-65505544',
-      category: 'Work',
-    },
-    {
-      first_name: 'Smor',
-      last_name: 'Duur',
-      number: '065-65505544',
-      category: 'Home',
-    },
-    {
-      first_name: 'Todo',
-      last_name: 'Todoovic',
-      number: '065-65505544',
-      category: 'Work',
-    },
-    {
-      first_name: 'Kek',
-      last_name: 'Bur',
-      number: '065-65505544',
-      category: 'Home',
-    },
-  ]
-
+  // const [contacts, setContacts] = useState([
+  //   {id: 1, name:"Herp",surname:"Derp",number:"065-65505544",category:"Work"},
+  //   {id: 2, name:"Smo",surname:"Duur",number:"065-65505544",category:"Home"},
+  //   {id: 3, name:"Todo",surname:"Todoovic",number:"065-65505544",category:"Work"},
+  //   {id: 4, name:"Kek",surname:"Bur",number:"065-65505544",category:"Home"}]
+  // )
+  const [contacts, setContacts] = useState([])
+  
+  useEffect( () =>{
+    let parsed = JSON.parse(localStorage.getItem('contacts'))
+    setContacts(parsed)
+  }, [])
 
   return (
     <div className="App" style={{marginTop: "50px"}}>
-      <ContactList data={contacts}></ContactList>
+      <ContactList data={contacts} update={setContacts}></ContactList>
     </div>
   );
 }
