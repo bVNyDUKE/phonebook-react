@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import ContactList from './components/ContactList'
+import AddEntryForm from './components/Forms/AddEntryForm';
 
 function App() {
   // const [contacts, setContacts] = useState([
@@ -9,7 +10,7 @@ function App() {
   //   {id: 4, name:"Kek",surname:"Bur",number:"065-65505544",category:"Home"}]
   // )
   const [contacts, setContacts] = useState([])
-  
+
   useEffect( () =>{
     let parsed = JSON.parse(localStorage.getItem('contacts'))
     setContacts(parsed)
@@ -18,6 +19,7 @@ function App() {
   return (
     <div className="App" style={{marginTop: "50px"}}>
       <ContactList data={contacts} update={setContacts}></ContactList>
+      <AddEntryForm setContacts={setContacts}></AddEntryForm>
     </div>
   );
 }

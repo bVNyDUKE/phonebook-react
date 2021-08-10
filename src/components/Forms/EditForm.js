@@ -1,4 +1,5 @@
 import React from 'react'
+import FormField from './FormField'
 
 const EditForm = ({name, surname, phone, editing, id, update}) => {
 
@@ -20,9 +21,9 @@ const EditForm = ({name, surname, phone, editing, id, update}) => {
     return (
     <div className="content">
         <div className="ui form">
-            <Field data={name} label='Name'></Field>
-            <Field data={surname} label='Surname'></Field>
-            <Field data={phone} label='Phone Number'></Field>
+            <FormField data={name} label='Name'></FormField>
+            <FormField data={surname} label='Surname'></FormField>
+            <FormField data={phone} label='Phone'></FormField>
             <div className='ui attached buttons'>
                 <button className='ui green button' onClick={() => saveData(update)}>
                     Save
@@ -35,12 +36,5 @@ const EditForm = ({name, surname, phone, editing, id, update}) => {
     </div>
     )
 }
-
-const Field = ({data, label}) => (
-    <div className="field">
-        <label>{label}</label>
-        <input type="text" value={data.value} onChange={data.onChange}></input>
-    </div>
-)
 
 export default EditForm

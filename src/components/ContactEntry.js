@@ -1,17 +1,6 @@
 import React, {useState} from 'react'
-import EditForm from './EditForm'
-
-function useFormInput(initialValue){
-    const [value, setValue] = useState(initialValue)
-
-    function handleChange(e){
-        setValue(e.target.value)
-    }
-    return{
-        value,
-        onChange: handleChange
-    }
-}
+import EditForm from './Forms/EditForm'
+import useFormInput from './Hooks/FormInput'
 
 const ContactEntry = ({entry, update}) =>{
     const [isEditing, setIsEditing] = useState(false)
