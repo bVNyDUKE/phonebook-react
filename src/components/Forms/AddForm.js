@@ -1,100 +1,109 @@
-import React, { useState } from "react";
-import FormField from "./FormField";
-import FormInput from "../Hooks/FormInput";
+import React, { useState } from "react"
+import FormField from "./FormField"
+import FormInput from "../Hooks/FormInput"
 
 const FormInputs = ({ setContacts, open, setOpen }) => {
-  const name = FormInput("");
-  const surname = FormInput("");
-  const phone = FormInput("");
-  const [category, setCategory] = useState("Home");
+    const name = FormInput("")
+    const surname = FormInput("")
+    const phone = FormInput("")
+    const [category, setCategory] = useState("Home")
 
-  function saveContact() {
-    if (name.valid && surname.valid && phone.valid) {
-      setContacts((oldList) => {
-        const newContact = [
-          {
-            id: Number(oldList.length + 1),
-            name: name.value,
-            surname: surname.value,
-            number: phone.value,
-            category: category,
-          },
-        ];
+    function saveContact() {
+        if (name.valid && surname.valid && phone.valid) {
+            setContacts((oldList) => {
+                const newContact = [
+                    {
+                        id: Number(oldList.length + 1),
+                        name: name.value,
+                        surname: surname.value,
+                        number: phone.value,
+                        category: category,
+                    },
+                ]
 
-        const newList = oldList.concat(newContact);
-        localStorage.setItem("contacts", JSON.stringify(newList));
-        return newList;
-      });
-      setOpen(false);
-    } else {
-      console.log("Invalid data");
+                const newList = oldList.concat(newContact)
+                localStorage.setItem("contacts", JSON.stringify(newList))
+                return newList
+            })
+            setOpen(false)
+        } else {
+            console.log("Invalid data")
+        }
     }
-  }
 
-  return (
-    <div
-      className="ui centered card"
-      style={{ display: !open ? "none" : null }}
-    >
-      <div className="content">
-        <div className="ui form">
-          <FormField data={name} label="Name"></FormField>
-          <FormField data={surname} label="Surname"></FormField>
-          <FormField data={phone} label="Phone"></FormField>
-          <div className="inline fields">
-            <div className="ui radio">
-              <input
-                type="radio"
-                value="Home"
-                checked={category === "Home"}
-                onChange={() => setCategory("Home")}
-              />
-              <label>
-                Home <i className="home icon"></i>
-              </label>
+    return (
+        <div
+            className="ui centered card"
+            style={{ display: !open ? "none" : null }}
+        >
+            <div className="content">
+                <div className="ui form">
+                    <FormField data={name} label="Name"></FormField>
+                    <FormField data={surname} label="Surname"></FormField>
+                    <FormField data={phone} label="Phone"></FormField>
+                    <div className="inline fields">
+                        <div className="ui radio">
+                            <input
+                                type="radio"
+                                value="Home"
+                                checked={category === "Home"}
+                                onChange={() => setCategory("Home")}
+                            />
+                            <label>
+                                Home <i className="home icon"></i>
+                            </label>
+                        </div>
+                        <div className="ui radio">
+                            <input
+                                type="radio"
+                                value="Work"
+                                checked={category === "Work"}
+                                onChange={() => setCategory("Work")}
+                            />
+                            <label>
+                                Work <i className="building icon"></i>
+                            </label>
+                        </div>
+                    </div>
+                    <div className="ui buttons attached">
+                        <button
+                            className="ui blue button"
+                            onClick={() => saveContact()}
+                        >
+                            Create
+                        </button>
+                        <button
+                            className="ui red button"
+                            onClick={() => setOpen(false)}
+                        >
+                            Cancel
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div className="ui radio">
-              <input
-                type="radio"
-                value="Work"
-                checked={category === "Work"}
-                onChange={() => setCategory("Work")}
-              />
-              <label>
-                Work <i className="building icon"></i>
-              </label>
-            </div>
-          </div>
-          <div className="ui buttons attached">
-            <button className="ui blue button" onClick={() => saveContact()}>
-              Create
-            </button>
-            <button className="ui red button" onClick={() => setOpen(false)}>
-              Cancel
-            </button>
-          </div>
         </div>
-      </div>
-    </div>
-  );
-};
+    )
+}
 
 const AddEntryForm = ({ setContacts }) => {
-  const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false)
 
-  return (
-    <div className="ui basic content center aligned segment">
-      <button className="ui basic button icon" onClick={() => setOpen(!open)}>
-        {!open && <i className="plus icon"></i>}
-        {open && <i className="minus icon"></i>}
-      </button>
-      <FormInputs
-        setContacts={setContacts}
-        open={open}
-        setOpen={setOpen}
-      ></FormInputs>
-    </div>
-  );
-};
+    return (
+        <div className="ui basic content center aligned segment">
+            <button
+                className="ui basic button icon"
+                onClick={() => setOpen(!open)}
+            >
+                {!open && <i className="plus icon"></i>}
+                {open && <i className="minus icon"></i>}
+            </button>
+            <FormInputs
+                setContacts={setContacts}
+                open={open}
+                setOpen={setOpen}
+            ></FormInputs>
+        </div>
+    )
+}
 
-export default AddEntryForm;
+export default AddEntryForm
