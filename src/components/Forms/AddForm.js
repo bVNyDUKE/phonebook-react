@@ -31,11 +31,10 @@ const FormInputs = ({ setContacts, open, setOpen }) => {
         }
     }
 
+    const style = open ? null : { display: "none" }
+
     return (
-        <div
-            className="ui centered card"
-            style={{ display: !open ? "none" : null }}
-        >
+        <div className="ui centered card" style={style}>
             <div className="content">
                 <div className="ui form">
                     <FormField data={name} label="Name"></FormField>
@@ -88,14 +87,15 @@ const FormInputs = ({ setContacts, open, setOpen }) => {
 const AddEntryForm = ({ setContacts }) => {
     const [open, setOpen] = useState(false)
 
+    const buttonClass = open ? "minus icon" : "plus icon"
+
     return (
         <div className="ui basic content center aligned segment">
             <button
                 className="ui basic button icon"
                 onClick={() => setOpen(!open)}
             >
-                {!open && <i className="plus icon"></i>}
-                {open && <i className="minus icon"></i>}
+                <i className={buttonClass} />
             </button>
             <FormInputs
                 setContacts={setContacts}

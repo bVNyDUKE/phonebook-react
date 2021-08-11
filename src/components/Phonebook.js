@@ -2,14 +2,14 @@ import React, { useState } from "react"
 import EditForm from "./Forms/EditForm"
 import useFormInput from "./Hooks/FormInput"
 
-const Phonebook = ({ data, setContacts }) => {
+const Phonebook = ({ contacts, setContacts }) => {
     return (
         <div className="ui container">
             <Header />
-            {data.map((contact) => (
+            {contacts.map( x => (
                 <ContactEntry
-                    entry={contact}
-                    key={contact.id}
+                    entry={x}
+                    key={x.id}
                     setContacts={setContacts}
                 ></ContactEntry>
             ))}

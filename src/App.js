@@ -26,21 +26,21 @@ function App() {
                 exact
                 path="/work"
                 render={() => (
-                    <Phonebook data={workContacts} setContacts={setContacts} />
+                    <Phonebook contacts={workContacts} setContacts={setContacts} />
                 )}
             />
             <Route
                 exact
                 path="/home"
                 render={() => (
-                    <Phonebook data={homeContacts} setContacts={setContacts} />
+                    <Phonebook contacts={homeContacts} setContacts={setContacts} />
                 )}
             />
             <Route
                 exact
                 path="/"
                 render={() => (
-                    <Phonebook data={contacts} setContacts={setContacts} />
+                    <Phonebook contacts={contacts} setContacts={setContacts} />
                 )}
             />
             <AddForm setContacts={setContacts}></AddForm>

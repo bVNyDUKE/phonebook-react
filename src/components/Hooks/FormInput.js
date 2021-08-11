@@ -28,7 +28,7 @@ function useFormInput(initialValue){
                 setValid(true)
             }
         }
-
+        
         setValue(e.target.value)
     }
 
