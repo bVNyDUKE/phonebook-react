@@ -2,6 +2,15 @@ import React, {useState} from 'react'
 import EditForm from './Forms/EditForm'
 import useFormInput from './Hooks/FormInput'
 
+const Phonebook = ({data, update}) => {
+
+    return(
+    <div className="ui container">
+    {data.map( contact => <ContactEntry entry={contact} key={contact.id} update={update}></ContactEntry>)}
+    </div>)
+
+}
+
 const ContactEntry = ({entry, update}) =>{
     const [isEditing, setIsEditing] = useState(false)
     const name = useFormInput(entry.name)
@@ -56,6 +65,5 @@ const ContactEntry = ({entry, update}) =>{
         </div>
     )
 }
-    
 
-export default ContactEntry
+export default Phonebook

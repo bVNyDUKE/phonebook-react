@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import ContactList from './components/ContactList'
-import AddEntryForm from './components/Forms/AddEntryForm';
+import Phonebook from './components/Phonebook'
+import AddForm from './components/Forms/AddForm';
 
 function App() {
   // const [contacts, setContacts] = useState([
@@ -18,8 +18,8 @@ function App() {
 
   return (
     <div className="App" style={{marginTop: "50px"}}>
-      <ContactList data={contacts} update={setContacts}></ContactList>
-      <AddEntryForm setContacts={setContacts}></AddEntryForm>
+      <Phonebook data={contacts} update={setContacts}></Phonebook>
+      <AddForm setContacts={setContacts}></AddForm>
     </div>
   );
 }
