@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Phonebook from "./components/Phonebook";
 import AddForm from "./components/Forms/AddForm";
+import { Route } from "react-router-dom";
 
 function App() {
 	// const [contacts, setContacts] = useState([
@@ -16,9 +17,33 @@ function App() {
 		setContacts(parsed);
 	}, []);
 
+	const workContacts = contacts.filter( x => x.category === "Work");
+	const homeContacts = contacts.filter( x => x.category === 'Home');
+
 	return (
 		<div className="App" style={{ marginTop: "50px" }}>
-			<Phonebook data={contacts} update={setContacts}></Phonebook>
+			
+			<Route
+				exact
+				path="/work"
+				render={() => (
+					<Phonebook data={workContacts} update={setContacts} />
+				)}
+			/>
+			<Route
+				exact
+				path="/home"
+				render={() => (
+					<Phonebook data={homeContacts} update={setContacts} />
+				)}
+			/>
+			<Route
+				exact
+				path="/"
+				render={() => (
+					<Phonebook data={contacts} update={setContacts} />
+				)}
+			/>
 			<AddForm setContacts={setContacts}></AddForm>
 		</div>
 	);

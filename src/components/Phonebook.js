@@ -5,6 +5,7 @@ import useFormInput from "./Hooks/FormInput";
 const Phonebook = ({ data, update }) => {
 	return (
 		<div className="ui container">
+			<Header />
 			{data.map((contact) => (
 				<ContactEntry
 					entry={contact}
@@ -15,6 +16,23 @@ const Phonebook = ({ data, update }) => {
 		</div>
 	);
 };
+
+const Header = () => (
+	<div class="center aligned navigation" style={{maxWidth: '300px',
+		margin: 'auto'}}>
+		<div class="ui three item menu">
+			<a class="item" href="/">
+				All
+			</a>
+			<a class="item" href="/work">
+				Work
+			</a>
+			<a class="item" href="/home">
+				Home
+			</a>
+		</div>
+	</div>
+);
 
 const ContactEntry = ({ entry, update }) => {
 	const [isEditing, setIsEditing] = useState(false);
