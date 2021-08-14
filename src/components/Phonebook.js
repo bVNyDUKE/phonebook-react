@@ -1,12 +1,13 @@
 import React, { useState } from "react"
 import EditForm from "./Forms/EditForm"
 import useFormInput from "./Hooks/FormInput"
+import { Link } from "react-router-dom"
 
 const Phonebook = ({ contacts, setContacts }) => {
     return (
         <div className="ui container">
             <Header />
-            {contacts.map( x => (
+            {contacts.map((x) => (
                 <ContactEntry
                     entry={x}
                     key={x.id}
@@ -23,15 +24,15 @@ const Header = () => (
         style={{ maxWidth: "300px", margin: "auto" }}
     >
         <div class="ui three item menu">
-            <a class="item" href="/">
+            <Link class="item" to="/">
                 All
-            </a>
-            <a class="item" href="/work">
+            </Link>
+            <Link class="item" to="/work">
                 Work
-            </a>
-            <a class="item" href="/home">
+            </Link>
+            <Link class="item" to="/home">
                 Home
-            </a>
+            </Link>
         </div>
     </div>
 )
